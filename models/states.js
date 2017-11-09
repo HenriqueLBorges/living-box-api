@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 var statesSchema = new Schema({
     questionsID: String,
+    option: Number,
     state: Object
 })
 
