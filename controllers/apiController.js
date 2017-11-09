@@ -27,7 +27,7 @@ module.exports = function (app) {
 
     app.post("/api/state/:id", function (req, res) {
         //Sets a state to the living box
-        States.findById({ _id: id }, function (err, state) {
+        States.findById({ _id: req.params.id }, function (err, state) {
             if (err) throw err;
             res.send(state);
             //Needs to set the value to the actuators and print values on the sensor

@@ -3,11 +3,12 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var statesSchema = new Schema({
+    _id: String,
     questionsID: String,
     option: Number,
     state: Object
-})
+});
 
-var states = mongoose.model("states", statesSchema);
+var States = mongoose.model("States", statesSchema);
 
-module.exports = states;
+module.exports = States;

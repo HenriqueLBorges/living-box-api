@@ -3,11 +3,12 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var questionsSchema = new Schema({
+    _id: String,
     actuators_sensorsID: String,
     question: String,
     options: []
-})
+});
 
-var questions = mongoose.model("questions", questionsSchema);
+var Questions = mongoose.model("Questions", questionsSchema);
 
-module.exports = questions;
+module.exports = Questions;

@@ -7,7 +7,7 @@ module.exports = function (app) {
     // Seed database
     app.get("/api/seedDatabase/actuators_sensors", function (req, res) {
         //actuators_sensors
-        let startActuators_sensors = [
+        var startActuators_sensors = [
             {
                 _id: "1",
                 name: "DHT 11",
@@ -21,7 +21,7 @@ module.exports = function (app) {
     });
     app.get("/api/seedDatabase/questions", function (req, res) {
         //questions
-        let startQuestions = [
+        var startQuestions = [
             {
                 _id: "1",
                 actuators_sensorsID: "1",
@@ -48,7 +48,7 @@ module.exports = function (app) {
 
     app.get("/api/seedDatabase/states", function (req, res) {
         //states
-        let startStates = [
+        var startStates = [
             {
                 _id: "1",
                 questionsID: "1",
