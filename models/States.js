@@ -7,6 +7,6 @@ var statesSchema = new Schema({
     state: Object
 })
 
-var states = mongoose.model("tates", statesSchema);
+var states = mongoose.model("states", statesSchema);
 
 module.exports = states;
