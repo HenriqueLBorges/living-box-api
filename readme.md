@@ -1,0 +1,1 @@
+[Documentação](https://documenter.getpostman.com/view/1790890/living-box-api/77mZMBY#ed27cf67-70a1-7147-4119-6d2f2b4f6a33).

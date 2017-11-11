@@ -25,7 +25,7 @@ module.exports = function (app) {
         });
     });
 
-    app.post("/api/state/:id", function (req, res) {
+    app.get("/api/state/:id", function (req, res) {
         //Sets a state to the living box
         States.findById({ _id: req.params.id }, function (err, state) {
             if (err) throw err;
