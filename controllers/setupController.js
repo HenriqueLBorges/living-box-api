@@ -176,7 +176,7 @@ module.exports = function (app) {
                 questionsID: "1",
                 option: 0,
                 state: {
-                    temp: "99999999999999º C"
+                    temp: "999 C"
                 }
             },
             {
@@ -184,7 +184,7 @@ module.exports = function (app) {
                 questionsID: "1",
                 option: 1,
                 state: {
-                    temp: "10º C"
+                    temp: "10 C"
                 }
             },
             {
@@ -192,7 +192,7 @@ module.exports = function (app) {
                 questionsID: "2",
                 option: 0,
                 state: {
-                    temp: "18º C"
+                    temp: "18 C"
                 }
             },
             {
@@ -200,7 +200,7 @@ module.exports = function (app) {
                 questionsID: "2",
                 option: 1,
                 state: {
-                    temp: "30º C"
+                    temp: "30 C"
                 }
             },
             {

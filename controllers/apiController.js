@@ -32,42 +32,56 @@ module.exports = function (app) {
             if (err) throw err;
             res.send(state);
 
-            if (state.state.temp && state.state.hum) {
+            if (typeof state.state.temp !== "undefined") {
                 var options = {
-                    args: ['Temp: ' + state.state.temp, 'Umidade: ' + state.state.hum]
+                    args: ['living-box', 'Temp: ' + state.state.temp]
                 };
 
-                PythonShell.run('../scripts/lcd.py', options, function (err, results) {
+                PythonShell.run('scripts/lcd.py', options, function (err, results) {
                     if (err) throw err;
                     console.log(results);
                 });
             }
-            if (state.state.led) {
+            if (typeof state.state.led !== "undefined") {
+		if (state.state.led == true) {
+			state.state.led = 1;
+		} else {
+			state.state.led = 0;
+		}
                 options = {
                     args: ["LED", state.state.led]
                 };
-
-                PythonShell.run('../scripts/led.py', options, function (err, results) {
+                PythonShell.run('scripts/led.py', options, function (err, results) {
                     if (err) throw err;
                     console.log(results);
                 });
             }
-            if (state.state.buzzer) {
+            if (typeof state.state.buzzer !== "undefined") {
+		if (state.state.buzzer == true) {
+			state.state.buzzer = 1;
+		} else {
+			state.state.buzzer = 0;
+		}
                 options = {
                     args: ["BUZZER", state.state.buzzer]
                 };
 
-                PythonShell.run('../scripts/led.py', options, function (err, results) {
+                PythonShell.run('scripts/led.py', options, function (err, results) {
                     if (err) throw err;
                     console.log(results);
                 });
             }
-            if (state.state.ventilador) {
+            if (typeof state.state.ventilador !== "undefined") {
+		if (state.state.ventilador == true) {
+			state.state.ventilador = 1;
+		} else {
+			state.state.ventilador = 0;
+		}
                 options = {
                     args: ["VENTILADOR", state.state.ventilador]
                 };
 
-                PythonShell.run('../scripts/led.py', options, function (err, results) {
+                PythonShell.run('scripts/led.py', options, function (err, results) {
                     if (err) throw err;
                     console.log(results);
                 });
