@@ -2,6 +2,7 @@
 var Actuators_sensors = require("../models/actuators_sensors");
 var Questions = require("../models/questions");
 var States = require("../models/states");
+var PythonShell = require('python-shell');
 
 var bodyParser = require("body-parser");
 
@@ -30,6 +31,43 @@ module.exports = function (app) {
         States.findById({ _id: req.params.id }, function (err, state) {
             if (err) throw err;
             res.send(state);
+
+	    var options = {
+                args: ['Temp: ' + state.state.temp, 'Umidade: ' + state.state.hum]
+	    };
+
+	    PythonShell.run('../scripts/lcd.py', options, function (err, results) {
+		if (err) throw err;
+		console.log(results);
+	    });
+
+	    options = {
+                args: ["LED", state.state.led]
+	    };
+
+	    PythonShell.run('../scripts/led.py', options, function (err, results) {
+		if (err) throw err;
+		console.log(results);
+	    });
+
+	    options = {
+                args: ["BUZZER", state.state.buzzer]
+	    };
+
+	    PythonShell.run('../scripts/led.py', options, function (err, results) {
+		if (err) throw err;
+		console.log(results);
+	    });
+
+	    options = {
+                args: ["VENTILADOR", state.state.ventilador]
+	    };
+
+	    PythonShell.run('../scripts/led.py', options, function (err, results) {
+		if (err) throw err;
+		console.log(results);
+	    });
+
             //Needs to set the value to the actuators and print values on the sensor
         });
     });

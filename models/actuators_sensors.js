@@ -5,7 +5,9 @@ var Schema = mongoose.Schema;
 var actuators_sensorsSchema = new Schema({
     _id: String,
     name: String,
-    description: String
+    description: String,
+    funFact: String,
+    photoURL: String
 });
 
 var Actuators_sensors = mongoose.model("Actuators_sensors", actuators_sensorsSchema);
