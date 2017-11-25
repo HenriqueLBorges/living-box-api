@@ -12,8 +12,8 @@ module.exports = function (app) {
 
     app.get("/api/actuators_sensors", function (req, res) {
         //Returns all sensors in the actuators_sensors collection
-        Actuators_sensors.find({}, function (err, actuators_sensors){
-            if(err) throw err;
+        Actuators_sensors.find({}, function (err, actuators_sensors) {
+            if (err) throw err;
             res.send(actuators_sensors);
         })
     });
@@ -32,41 +32,46 @@ module.exports = function (app) {
             if (err) throw err;
             res.send(state);
 
-	    var options = {
-                args: ['Temp: ' + state.state.temp, 'Umidade: ' + state.state.hum]
-	    };
+            if (state.state.temp && state.state.hum) {
+                var options = {
+                    args: ['Temp: ' + state.state.temp, 'Umidade: ' + state.state.hum]
+                };
 
-	    PythonShell.run('../scripts/lcd.py', options, function (err, results) {
-		if (err) throw err;
-		console.log(results);
-	    });
+                PythonShell.run('../scripts/lcd.py', options, function (err, results) {
+                    if (err) throw err;
+                    console.log(results);
+                });
+            }
+            if (state.state.led) {
+                options = {
+                    args: ["LED", state.state.led]
+                };
 
-	    options = {
-                args: ["LED", state.state.led]
-	    };
+                PythonShell.run('../scripts/led.py', options, function (err, results) {
+                    if (err) throw err;
+                    console.log(results);
+                });
+            }
+            if (state.state.buzzer) {
+                options = {
+                    args: ["BUZZER", state.state.buzzer]
+                };
 
-	    PythonShell.run('../scripts/led.py', options, function (err, results) {
-		if (err) throw err;
-		console.log(results);
-	    });
+                PythonShell.run('../scripts/led.py', options, function (err, results) {
+                    if (err) throw err;
+                    console.log(results);
+                });
+            }
+            if (state.state.ventilador) {
+                options = {
+                    args: ["VENTILADOR", state.state.ventilador]
+                };
 
-	    options = {
-                args: ["BUZZER", state.state.buzzer]
-	    };
-
-	    PythonShell.run('../scripts/led.py', options, function (err, results) {
-		if (err) throw err;
-		console.log(results);
-	    });
-
-	    options = {
-                args: ["VENTILADOR", state.state.ventilador]
-	    };
-
-	    PythonShell.run('../scripts/led.py', options, function (err, results) {
-		if (err) throw err;
-		console.log(results);
-	    });
+                PythonShell.run('../scripts/led.py', options, function (err, results) {
+                    if (err) throw err;
+                    console.log(results);
+                });
+            }
 
             //Needs to set the value to the actuators and print values on the sensor
         });
