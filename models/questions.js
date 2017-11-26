@@ -6,6 +6,7 @@ var questionsSchema = new Schema({
     _id: String,
     actuators_sensorsID: String,
     question: String,
+    photos:[],
     options: []
 });
 
