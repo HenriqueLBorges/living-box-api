@@ -21,7 +21,6 @@ module.exports = function (app) {
     app.get("/api/questions/:id", function (req, res) {
         //Returns all questions that matchs the sensor's ID
         Questions.find({ actuators_sensorsID: req.params.id }, function (err, questions) {
-            console.log("questions = ", questions);
             if (err) throw err;
             res.send(questions);
         });
