@@ -3,7 +3,6 @@ var Actuators_sensors = require("../models/actuators_sensors");
 var Questions = require("../models/questions");
 var States = require("../models/states");
 var PythonShell = require('python-shell');
-
 var bodyParser = require("body-parser");
 
 module.exports = function (app) {
@@ -15,6 +14,16 @@ module.exports = function (app) {
         Actuators_sensors.find({}, function (err, actuators_sensors) {
             if (err) throw err;
             res.send(actuators_sensors);
+
+            var options = {
+                args: ['living-box', 'Bem vindo!! Esta preparado?']
+            };
+
+            /*PythonShell.run('scripts/inicio.py', options, function (err, results) {
+                if (err) throw err;
+                console.log(results);
+            });*/
+
         })
     });
 
@@ -43,11 +52,11 @@ module.exports = function (app) {
                 });
             }
             if (typeof state.state.led !== "undefined") {
-		if (state.state.led == true) {
-			state.state.led = 1;
-		} else {
-			state.state.led = 0;
-		}
+                if (state.state.led == true) {
+                    state.state.led = 1;
+                } else {
+                    state.state.led = 0;
+                }
                 options = {
                     args: ["LED", state.state.led]
                 };
@@ -57,11 +66,11 @@ module.exports = function (app) {
                 });
             }
             if (typeof state.state.buzzer !== "undefined") {
-		if (state.state.buzzer == true) {
-			state.state.buzzer = 1;
-		} else {
-			state.state.buzzer = 0;
-		}
+                if (state.state.buzzer == true) {
+                    state.state.buzzer = 1;
+                } else {
+                    state.state.buzzer = 0;
+                }
                 options = {
                     args: ["BUZZER", state.state.buzzer]
                 };
@@ -72,11 +81,11 @@ module.exports = function (app) {
                 });
             }
             if (typeof state.state.ventilador !== "undefined") {
-		if (state.state.ventilador == true) {
-			state.state.ventilador = 1;
-		} else {
-			state.state.ventilador = 0;
-		}
+                if (state.state.ventilador == true) {
+                    state.state.ventilador = 1;
+                } else {
+                    state.state.ventilador = 0;
+                }
                 options = {
                     args: ["VENTILADOR", state.state.ventilador]
                 };

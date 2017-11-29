@@ -13,6 +13,9 @@ var port = process.env.Port || 3000;
 //Connects mongoose to the database
 mongoose.connect(config.getMongoConnectionString());
 
+//Set the static folder
+app.use(express.static(__dirname + '/static'));
+
 apiController(app);
 setupController(app);
 
