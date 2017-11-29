@@ -18,10 +18,10 @@ module.exports = function (app) {
         options = {
             args: ["living-box", "temp"]
         };
-        PythonShell.run('scripts/lcd.py', options, function (err, results) {
+        /*PythonShell.run('scripts/lcd.py', options, function (err, results) {
             if (err) throw err;
         });
-        res.send("temp");
+        res.send("temp");*/
     });
 
     app.get("/api/led", function (req, res) {
@@ -33,10 +33,10 @@ module.exports = function (app) {
         options = {
             args: ["LED", input]
         };
-        PythonShell.run('scripts/led.py', options, function (err, results) {
+        /*PythonShell.run('scripts/led.py', options, function (err, results) {
             if (err) throw err;
         });
-        console.log("Led = ", led);
+        console.log("Led = ", led);*/
         res.send(led);
     });
 
@@ -49,9 +49,9 @@ module.exports = function (app) {
         options = {
             args: ["BUZZER", input]
         };
-        PythonShell.run('scripts/led.py', options, function (err, results) {
+        /*PythonShell.run('scripts/led.py', options, function (err, results) {
             if (err) throw err;
-        });
+        });*/
         console.log("Buzzer = ", buzzer);
         res.send(buzzer);
     });
@@ -64,9 +64,9 @@ module.exports = function (app) {
         options = {
             args: ["VENTILADOR", input]
         };
-        PythonShell.run('scripts/led.py', options, function (err, results) {
+        /*PythonShell.run('scripts/led.py', options, function (err, results) {
             if (err) throw err;
-        });
+        });*/
         console.log("Ventilador = ", ventilador);
         res.send(ventilador);
     });
@@ -86,17 +86,17 @@ module.exports = function (app) {
                 args: ['living-box', 'Bem vindo!! Esta preparado?']
             };
 
-            PythonShell.run('scripts/inicio.py', options, function (err, results) {
+            /*PythonShell.run('scripts/inicio.py', options, function (err, results) {
                 if (err) throw err;
                 console.log(results);
-            });
+            });*/
 
         })
     });
 
     app.get("/api/questions/:id", function (req, res) {
         //Returns all questions that matchs the sensor's ID
-        Questions.find({ _id: req.params.id }, function (err, questions) {
+        Questions.find({ actuators_sensorsID: req.params.id }, function (err, questions) {
             if (err) throw err;
             res.send(questions);
         });
