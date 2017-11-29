@@ -98,7 +98,7 @@ module.exports = function (app) {
                     }
                 ]
             },
-            {
+            /*{
                 _id: "3",
                 actuators_sensorsID: "2",
                 question: "Por que é importante sempre usar um resistor acoplado ao LED?",
@@ -129,6 +129,47 @@ module.exports = function (app) {
                     },
                     {
                         answer: "Catodo.",
+                        correct: false,
+                        states: "8"
+                    }
+                ]
+            },*/
+            {
+                _id: "3",
+                actuators_sensorsID: "2",
+                question: "O que acontece na linha 12 'if status:'?",
+                photos: ["https://scontent.fcgh4-1.fna.fbcdn.net/v/t1.0-9/24068123_1687283881322940_45083674275550605_n.jpg?_nc_eui2=v1%3AAeFiJNzQVnN2enWFGF8F_DdZkEQeTf3tQylSs4O0q13OnpH37cGTBSymlze3OQBJd8S50Nmt3FRDcHKADKMMGouZzK2vUS4bWscafs66x6bXew&oh=ad52c2ddd16bb30fd034b3ce75388796&oe=5A8FF0F9"],
+                options: [
+                    {
+                        answer: "Nada.",
+                        correct: false,
+                        states: "5"
+                    },
+                    {
+                        answer: "Verificamos se status == False.",
+                        correct: false,
+                        states: "5"
+                    },
+                    {
+                        answer: "Verificamos se status == True.",
+                        correct: true,
+                        states: "6"
+                    },
+                ]
+            },
+            {
+                _id: "4",
+                actuators_sensorsID: "2",
+                question: "Na linha 21, o que significa 'if __name__ == '__main__':'",
+                photos: ["https://scontent.fcgh4-1.fna.fbcdn.net/v/t1.0-9/24068123_1687283881322940_45083674275550605_n.jpg?_nc_eui2=v1%3AAeFiJNzQVnN2enWFGF8F_DdZkEQeTf3tQylSs4O0q13OnpH37cGTBSymlze3OQBJd8S50Nmt3FRDcHKADKMMGouZzK2vUS4bWscafs66x6bXew&oh=ad52c2ddd16bb30fd034b3ce75388796&oe=5A8FF0F9"],
+                options: [
+                    {
+                        answer: "Significa que aquele trecho de código vai ser executado apenas se o módulo for o principal.",
+                        correct: true,
+                        states: "7"
+                    },
+                    {
+                        answer: "Esse if verifica o diretório do arquivo.",
                         correct: false,
                         states: "8"
                     }

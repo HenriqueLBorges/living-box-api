@@ -29,13 +29,13 @@ module.exports = function (app) {
 
     app.get("/api/questions/:id", function (req, res) {
         //Returns all questions that matchs the sensor's ID
-        Questions.find({ _id: req.params.id }, function (err, questions) {
+        Questions.find({ actuators_sensorsID: req.params.id }, function (err, questions) {
             if (err) throw err;
             res.send(questions);
         });
     });
 
-    app.get("/api/state/:id", function (req, res) {
+    app.get("/api/states/:id", function (req, res) {
         //Sets a state to the living box
         States.findById({ _id: req.params.id }, function (err, state) {
             if (err) throw err;
