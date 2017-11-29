@@ -21,7 +21,7 @@ module.exports = function (app) {
         PythonShell.run('scripts/lcd.py', options, function (err, results) {
             if (err) throw err;
         });
-        console.log("Temp = ");
+        res.send("temp");
     });
 
     app.get("/api/led", function (req, res) {
