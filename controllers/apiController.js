@@ -4,10 +4,77 @@ var Questions = require("../models/questions");
 var States = require("../models/states");
 var PythonShell = require('python-shell');
 var bodyParser = require("body-parser");
+var led = false;
+var buzzer = false;
+var ventilador = false;
+var input = 0;
 
 module.exports = function (app) {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
+
+    app.get("/api/dht22", function (req, res) {
+        //Returns dht22 reading
+        options = {
+            args: ["living-box", "temp"]
+        };
+        PythonShell.run('scripts/lcd.py', options, function (err, results) {
+            if (err) throw err;
+        });
+        console.log("Temp = ");
+    });
+
+    app.get("/api/led", function (req, res) {
+        //activates led
+        led = !led;
+        input = 0;
+        if (led)
+            input = 1;
+        options = {
+            args: ["LED", input]
+        };
+        PythonShell.run('scripts/led.py', options, function (err, results) {
+            if (err) throw err;
+        });
+        console.log("Led = ", led);
+        res.send(led);
+    });
+
+    app.get("/api/buzzer", function (req, res) {
+        //activates buzzer
+        buzzer = !buzzer;
+        input = 0;
+        if (buzzer)
+            input = 1;
+        options = {
+            args: ["BUZZER", input]
+        };
+        PythonShell.run('scripts/led.py', options, function (err, results) {
+            if (err) throw err;
+        });
+        console.log("Buzzer = ", buzzer);
+        res.send(buzzer);
+    });
+
+    app.get("/api/ventilador", function (req, res) {
+        input = 0;
+        ventilador = !ventilador;
+        if (ventilador)
+            input = 1;
+        options = {
+            args: ["VENTILADOR", input]
+        };
+        PythonShell.run('scripts/led.py', options, function (err, results) {
+            if (err) throw err;
+        });
+        console.log("Ventilador = ", ventilador);
+        res.send(ventilador);
+    });
+
+    app.get("/api/ldr", function (req, res) {
+        //Returns ldr sensor output
+
+    });
 
     app.get("/api/actuators_sensors", function (req, res) {
         //Returns all sensors in the actuators_sensors collection
@@ -19,10 +86,10 @@ module.exports = function (app) {
                 args: ['living-box', 'Bem vindo!! Esta preparado?']
             };
 
-            /*PythonShell.run('scripts/inicio.py', options, function (err, results) {
+            PythonShell.run('scripts/inicio.py', options, function (err, results) {
                 if (err) throw err;
                 console.log(results);
-            });*/
+            });
 
         })
     });
